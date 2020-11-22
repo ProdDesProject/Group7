@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './LogAndReg.css';
 import axios from 'axios';
 import Auth from './Auth';

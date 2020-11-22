@@ -7,7 +7,13 @@ const knex = require('./knex/knex');
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
+
 var cors = require('cors')
+
+
+var hoursRouter = require('./routes/hours');
+var robotRouter = require('./routes/robots');
+var resRouter = require('./routes/res');
 
 var app = express();
 app.use(cors())
@@ -25,6 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/login', authRouter);
 app.use('/users', usersRouter);
+app.use('/hours', hoursRouter);
+app.use('/robots', robotRouter);
+app.use('/res',resRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
