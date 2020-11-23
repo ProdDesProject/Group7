@@ -58,8 +58,13 @@ module.exports = {
         return database('reservation').where('idres',idres).select('idres','idrobot','iduser','idhour','date').first()
     },
 
-    getReservationByDate(date) {
-        return database('reservation').where('date',date).select('idres','idrobot','iduser','idhour','date').first()
+    getReservationByDate(dayVaribale) {
+        return database('reservation').andWhereRaw('EXTRACT(DAY FROM date::date) = ?',[dayVaribale])
+    },
+    
+    getReservationByName(username) {
+       return database('reservation').select(['reservation.idres','reservation.idhour','reservation.idrobot','reservation.iduser','reservation.date',
+                        'users.username']).innerJoin('users','users.iduser','reservation.iduser').where('username',username)
     },
 
     deleteReservation(idres) {
