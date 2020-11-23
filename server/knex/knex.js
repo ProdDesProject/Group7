@@ -61,6 +61,11 @@ module.exports = {
     getReservationByDate(date) {
         return database('reservation').where('date',date).select('idres','idrobot','iduser','idhour','date').first()
     },
+    
+    getReservationByName(username) {
+       return database('reservation').select(['reservation.idres','reservation.idhour','reservation.idrobot','reservation.iduser','reservation.date',
+                        'users.username']).innerJoin('users','users.iduser','reservation.iduser').where('username',username)
+    },
 
     deleteReservation(idres) {
         return database('reservation').where('idres',idres).del()
