@@ -51,20 +51,21 @@ module.exports = {
     },
 
     getAllReservation() {
-        return database('reservation').select()
+        return database('reservation').select('*').innerJoin('robots', 'reservation.idrobot', 'robots.idrobot')
     },
 
     getReservationById(idres) {
         return database('reservation').where('idres',idres).select('idres','idrobot','iduser','idhour','date').first()
     },
 
-    getReservationByDate(dayVaribale) {
-        return database('reservation').andWhereRaw('EXTRACT(DAY FROM date::date) = ?',[dayVaribale])
+    getReservationByDate(dayVariable) {
+        return database('reservation').where('date',dayVariable)
+        //andWhereRaw('EXTRACT(DAY FROM date::date) = ?',[dayVaribale])
     },
     
     getReservationByName(username) {
        return database('reservation').select(['reservation.idres','reservation.idhour','reservation.idrobot','reservation.iduser','reservation.date',
-                        'users.username']).innerJoin('users','users.iduser','reservation.iduser').where('username',username)
+                        'users.username','name']).innerJoin('users','users.iduser','reservation.iduser').where('username',username).innerJoin('robots', 'reservation.idrobot', 'robots.idrobot')
     },
 
     deleteReservation(idres) {

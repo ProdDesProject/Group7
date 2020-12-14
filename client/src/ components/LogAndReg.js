@@ -30,7 +30,7 @@ export default function LogAndReg(props) {
         event.preventDefault();
         Auth.authenticate(props.username, props.password)
             .then(result => {
-                props.onLogin(result.data.user.username);
+                props.onLogin(result.data.user);
                 props.history.push(props.redirectPathOnSuccess);
                 props.resetForm();
             })

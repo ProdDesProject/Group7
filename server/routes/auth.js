@@ -89,7 +89,7 @@ router.get(
   passport.authenticate('basic', { session: false }),
   (req, res) => {
     const body = {
-      id: req.user.iduser,
+      iduser: req.user.iduser,
       username: req.user.username
     };
 

@@ -6,8 +6,8 @@ module.exports = {
     connection: {
       host : '127.0.0.1',
       user : 'postgres',
-      password : 'loliology9029',
-      database : 'robot_reservation',
+      password : 'Kokeilua201919',
+      database : 'reservation',
       charset: 'utf8'
     },
     migrations: {
